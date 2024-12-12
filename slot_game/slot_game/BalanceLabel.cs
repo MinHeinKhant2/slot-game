@@ -15,6 +15,8 @@ namespace slot_game
             Location = new Point(x, y);
             Size = new Size(witdh, height);
             Text = str;
+            ForeColor = Color.DarkRed;
+
         }
         public void TextUpdate(string balance)
         {

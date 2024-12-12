@@ -28,27 +28,28 @@ namespace slot_game
         {  
             InitializeComponent();
 
-               _labelreel1 = new LabelReel1(50,50, 35, 13, "🍒");
+               _labelreel1 = new LabelReel1(50,50, 35, 30, "🍒");
                 Controls.Add(_labelreel1);
-                _labelreel2 = new LabelReel2(150, 50, 35, 13, "🍒");
+                _labelreel2 = new LabelReel2(150, 50, 35, 30, "🍒");
                 Controls.Add(_labelreel2);
-                _labelreel3 = new LabelReel3(250, 50, 35, 13, "🍒");
+                _labelreel3 = new LabelReel3(250, 50, 35, 30, "🍒");
                 Controls.Add(_labelreel3);
-            _resultlabel = new ResultLabel(100, 200, 200, 23, "GOODLUCK");
+            _resultlabel = new ResultLabel(100, 200, 200, 30, "Good Luck!");
             Controls.Add(_resultlabel);
-            _balancelabel = new BalanceLabel(0, 0, 145, 13, "Balance = $"+balance);
+            _balancelabel = new BalanceLabel(50, 20, 145, 13, "Balance = $"+balance);
             Controls.Add(_balancelabel);
-            _betamount = new BetAmount(100, 120, 45, 23, "");
+            _betamount = new BetAmount(130, 120, 45, 23, "");
             Controls.Add(_betamount);
-            _betlabel = new BetLabel(100, 100, 45, 23, "Bet:");
+            _betlabel = new BetLabel(130, 100, 45, 23, "Bet:");
             Controls.Add(_betlabel);
-            _spinbutton = new SpinButton(this,100, 150, 45, 23);
+            _spinbutton = new SpinButton(this,130, 150, 45, 23);
             Controls.Add(_spinbutton);
         }
         public void SystemStart()
         {
-
-            int reel1 = random.Next(0,symbols.Length);
+            if (int.TryParse(_betamount.Text, out int betAmount) && betAmount > 0 && betAmount <= balance)
+            {
+                int reel1 = random.Next(0,symbols.Length);
             string a=symbols[reel1];
             _labelreel1.TextUpdate(a);
 
@@ -62,15 +63,20 @@ namespace slot_game
             string d;
             if (reel1 == reel2 && reel2 == reel3)
             {
-                d = "You win";
-                balance +=5;
+                d = "You win!";
+                balance += betAmount*2;
             }else
             {
-                d = "Try Again";
-                balance -=5;
+                d = "Try Again!";
+                balance -= betAmount;
             }
             _resultlabel.TextUpdate(d);
             _balancelabel.TextUpdate("Balance = $"+balance);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid bet amount.");
+            }
         }
 
        

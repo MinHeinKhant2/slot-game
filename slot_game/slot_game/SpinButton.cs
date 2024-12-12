@@ -17,6 +17,8 @@ namespace slot_game
             Location=new Point(x,y);
             Size = new Size(witdth,height);
             Text = "Spin";
+            BackColor =Color.LightCyan;
+
         }
         public void OnClick(object sender, EventArgs e)
         {

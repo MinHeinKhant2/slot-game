@@ -15,6 +15,10 @@ namespace slot_game
             Location = new Point(x, y);
             Size = new Size(witdh, height);
             Text = str;
+            ForeColor = Color.Blue;
+            Font = new Font(Font.FontFamily, 16);
+
+
         }
         public void TextUpdate(string b)
         {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace slot_game
 {
     internal class LabelReel1:Label
@@ -14,6 +15,10 @@ namespace slot_game
             Location = new Point(x, y);
             Size = new Size(witdh, height);
             Text = str;
+            ForeColor = Color.Blue;
+
+            Font = new Font(Font.FontFamily, 16);
+
         }
         public void TextUpdate(string a)
         {
